@@ -3,10 +3,11 @@ const router = express.Router();
 const Post = require('../models/Post');
 
 
-//Routes
+/**
+ * GET /
+ * HOME
+ */
 router.get('', async (req, res) => {
-
-    
     const locals= {
         title: "System And Beyond",
         description: "Created By System And Beyond Squad."
@@ -37,6 +38,26 @@ router.get('', async (req, res) => {
         console.log(error);
     }
 });
+
+/**
+ * GET /
+ * POST :id
+ */
+
+router.get('/post/:id', async (req,res) => {
+    try {
+        const locals= {
+            title: data.title,
+            description: "Created By System And Beyond Squad."
+        }
+
+        let slug = req.params.id;
+        const data = await Post.findById({ _id: slug })
+        res.render('post', { locals,data });
+    } catch (error) {
+        console.log(error);
+    }
+})
 
 // router.get('linux', (req,res) => {
 //     res.render('about')

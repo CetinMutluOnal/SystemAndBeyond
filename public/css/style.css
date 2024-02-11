@@ -5,9 +5,6 @@
     --red: #b30000;
     --systemandbeyond: #ddf8fc;
     --font-size-base: 1rem;
-    --font-size-md: clamp(1.25rem,061vw, 1.1rem, 1.58rem);
-    --font-size-lg: clamp(1.56rem,1vw, 1.31rem, 2.11rem);
-    --font-size-xl: clamp(2.44rem,2.38vw, 1.85rem, 3.75rem);
     --border-radius: 5px;
 }
 
@@ -19,9 +16,7 @@ body {
 }
 
 a { color: var(--black); }
-h1{ font-size: var(--font-size-xl); }
-h2{ font-size: var(--font-size-lg); }
-h3{ font-size: var(--font-size-md); }
+
 input[type="text"],
 input[type="email"],
 input[type="password"],
@@ -140,7 +135,7 @@ textarea{
     text-align: center;
 }
 
-.welcome__heading{
+.welcome__header{
     margin-top: 10px;
     margin-bottom: 5px;
 }
@@ -152,9 +147,8 @@ textarea{
 
 /* Posts */
 
-.post__headings{
+.post__headers{
     margin-top: 4rem;
-    font-weight: 400;
 }
 
 .post-ul{

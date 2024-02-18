@@ -1,19 +1,26 @@
-<h3>Sign In</h3>
+<div class="login-form-container">
 
-<form action="/login" method="POST">
+    <div class="login-form col-6">
+            <img src="/img/Logo_alpha_horizontal.png" class="logo" alt="">
+            <h3 id="sign-in">Sign In</h3>
 
-<label for="email"><b>Email</b></label>
-<input type="text" placeholder="Enter Email" name="email">
+        <form action="/login" method="POST" class="form-group">
 
-<label for="password"><b>Password</b></label>
-<input type="password" placeholder="Enter Password" name="password">
+        <label for="email"><b>Email</b></label>
+        <input type="text" class="form-control" placeholder="Enter Email" name="email">
+        
 
-<input type="submit" value="Login" class="btn">
+        <label for="password"><b>Password</b></label>
+        <input type="password"  class="form-control" placeholder="Enter Password" name="password">
 
-</form>
+        <input type="submit" value="Login" class="btn btn-outline-primary">
+
+        </form>
+    </div>
+</div>
 
 
-
+<!-- 
 <h3>Register</h3>
 <form action="/register" method="POST">
 
@@ -28,4 +35,4 @@
 
 <input type="submit" value="Register" class="btn">
 
-</form>
+</form> -->

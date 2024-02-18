@@ -6,6 +6,8 @@
     --systemandbeyond: #ddf8fc;
     --font-size-base: 1rem;
     --border-radius: 5px;
+    --systemandbeyond: #29ABE2;
+    --skycolor: #ddf8fc;
 }
 
 body {
@@ -285,4 +287,30 @@ flex-direction: column;
     right: 0;
     color: var(--gray-light);
     padding: 5px;
+}
+
+.login-form-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    height: 75vh;
+}
+
+.login-form{
+    padding: 1.5rem;
+    display: inline-block;
+    margin: auto;
+    border: 2px solid var(--systemandbeyond);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    background-color: var(--skycolor);
+    color: #29ABE2;
+}
+
+.logo{
+    height: 40%;
+    width: 40%;
+    align-self: center;
+    border-radius: 5px;
 }

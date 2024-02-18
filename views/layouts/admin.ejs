@@ -12,12 +12,16 @@
 
 </head>
 <body>
-    <div class="container">
-        <%- include('../partials/admin/header.ejs') %>
-        <main class="main">
-            <%- body %>
-        </main>
-        <%- include('../partials/footer.ejs') %>
-    </div>
+    <div class="main-page-container">
+        <div class="sidebar-main-container col-2">
+            <%- include('../partials/admin/sidebar.ejs')  %>
+        </div>  
+        <div class="container col-10">
+            <%- include('../partials/admin/header.ejs') %>
+            <main class="main">
+                <%- body %>
+            </main>
+        </div>
+ </div>
 </body>
 </html>

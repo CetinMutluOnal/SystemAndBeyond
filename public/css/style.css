@@ -34,6 +34,11 @@ textarea{
 }
 
 
+.main-page-container{
+    display: flex;
+}
+
+
 .main{
     padding: 20px 0px;
     display: flex;
@@ -230,6 +235,8 @@ flex-direction: column;
 .footer{
     margin: 4rem;
     text-align: center;
+    bottom: 0;
+    left: 0;
 }
 
 .admin-title {
@@ -314,3 +321,28 @@ flex-direction: column;
     align-self: center;
     border-radius: 5px;
 }
+
+.sidebar-nav{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    height: 100vh;
+    background-color: var(--skycolor);
+    padding: 1.5rem;
+}
+
+.sidebar-nav ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+    padding: 0;
+}
+
+.sidebar-list li a{
+    text-decoration: none;
+    color: var(--systemandbeyond);
+}
+

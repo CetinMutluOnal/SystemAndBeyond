@@ -27,12 +27,11 @@ const authMiddleware = (req, res, next) => {
     
 }
 
-
 /**
  *
  * Get Dashboard
  */
-router.get('/dashboard',authMiddleware ,async(req, res) => {
+router.get('/admin/dashboard',authMiddleware ,async(req, res) => {
     
     try {
         const locals= {
@@ -50,7 +49,6 @@ router.get('/dashboard',authMiddleware ,async(req, res) => {
     }
 
 });
-
 
 
 /**
@@ -76,7 +74,7 @@ router.get('/admin', async (req,res) => {
  * Admin - Register
  */
 
-router.post('/register', async(req,res) => {
+router.post('/admin/register', async(req,res) => {
     try {
         const { name,email, password } = req.body;
         const user = await User.create({name,email, password: await bcrypt.hash(password,10) });
@@ -91,7 +89,7 @@ router.post('/register', async(req,res) => {
  * Admin - Login
  */
 
-router.post('/login', async(req,res) => {
+router.post('/admin/login', async(req,res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({email});
@@ -115,66 +113,24 @@ router.post('/login', async(req,res) => {
  * Admin - Logout
  */
 
-router.get('/logout', authMiddleware, async(req,res) => {
+router.get('/admin/logout', authMiddleware, async(req,res) => {
     res.clearCookie('token');
     res.redirect('/');
 })
 
 /**
- * Post /
- * Admin - Create New Post
+ *
+ * Get Admin Posts
  */
-
-router.get('/add-post',authMiddleware, async(req, res) => {
+router.get('/admin/posts',authMiddleware ,async(req, res) => {
     
     try {
         const locals= {
-            title: "Add Post",
+            title: "Posts Controls",
             description: "Created By System And Beyond Squad."
         }
         const data = await Post.find();
-        res.render('admin/add-post',{
-            locals,
-            layout: 'layouts/admin'
-        });
-    } catch (error) {
-        
-    }
-
-});
-
-/**
- * Post /
- * Admin - Create New Post
- */
-
-router.post('/add-post',authMiddleware, async(req, res) => {
-    try {
-        const newPost = new Post({
-            title: req.body.title,
-            content: req.body.content,
-        })
-        try {
-            await Post.create(newPost);
-            res.redirect('/dashboard');   
-        } catch (error) {
-            console.log(error);
-        }
-    } catch (error) {
-        console.log(error);
-    }
-
-});
-
-router.get('/edit-post/:id',authMiddleware, async(req, res) => {
-    
-    try {
-        const locals= {
-            title: "Edit Post",
-            description: "Created By System And Beyond Squad."
-        }
-        const data = await Post.findOne({_id: req.params.id});
-        res.render('admin/edit-post',{
+        res.render('admin/posts/posts',{
             locals,
             data,
             layout: 'layouts/admin'
@@ -185,7 +141,72 @@ router.get('/edit-post/:id',authMiddleware, async(req, res) => {
 
 });
 
-router.put('/edit-post/:id',authMiddleware, async(req, res) => {
+/**
+ * Post /
+ * Admin - Create New Post
+ */
+
+router.get('/admin/add-post',authMiddleware, async(req, res) => {
+    
+    try {
+        const locals= {
+            title: "Add Post",
+            description: "Created By System And Beyond Squad."
+        }
+        const data = await Post.find();
+        res.render('admin/posts/add-post',{
+            locals,
+            layout: 'layouts/admin'
+        });
+    } catch (error) {
+        
+    }
+
+});
+
+/**
+ * Post /
+ * Admin - Create New Post
+ */
+
+router.post('/admin/add-post',authMiddleware, async(req, res) => {
+    try {
+        const newPost = new Post({
+            title: req.body.title,
+            content: req.body.content,
+        })
+        try {
+            await Post.create(newPost);
+            res.redirect('/admin/posts');   
+        } catch (error) {
+            console.log(error);
+        }
+    } catch (error) {
+        console.log(error);
+    }
+
+});
+
+router.get('/admin/edit-post/:id',authMiddleware, async(req, res) => {
+    
+    try {
+        const locals= {
+            title: "Edit Post",
+            description: "Created By System And Beyond Squad."
+        }
+        const data = await Post.findOne({_id: req.params.id});
+        res.render('admin/posts/edit-post',{
+            locals,
+            data,
+            layout: 'layouts/admin'
+        });
+    } catch (error) {
+        
+    }
+
+});
+
+router.put('/admin/edit-post/:id',authMiddleware, async(req, res) => {
     try {
         await Post.findByIdAndUpdate(req.params.id, {
             title: req.body.title,
@@ -193,7 +214,7 @@ router.put('/edit-post/:id',authMiddleware, async(req, res) => {
             updatedAt: Date.now(),
         });
 
-        res.redirect(`/edit-post/${req.params.id}`);
+        res.redirect(`/admin/edit-post/${req.params.id}`);
     } catch (error) {
         console.log(error);
     }
@@ -205,11 +226,11 @@ router.put('/edit-post/:id',authMiddleware, async(req, res) => {
  * Admin - Delete Post
  */
 
-router.delete('/delete-post/:id',authMiddleware, async(req, res) => {
+router.delete('/admin/delete-post/:id',authMiddleware, async(req, res) => {
     try {
         await Post.findByIdAndDelete(req.params.id);
 
-        res.redirect(`/dashboard`);
+        res.redirect(`admin/posts`);
     } catch (error) {
         console.log(error);
     }

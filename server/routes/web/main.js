@@ -1,6 +1,6 @@
-const express = require('express');
-const router = express.Router();
-const Post = require('../models/Post');
+import { Router } from 'express';
+const router = Router();
+import Post from '../../models/Post.js';
 
 
 /**
@@ -105,4 +105,4 @@ router.post('/search', async (req,res) => {
 //     res.render('about')
 // })
 
-module.exports = router;
+export default router;

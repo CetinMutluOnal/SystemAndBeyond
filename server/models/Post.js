@@ -1,5 +1,4 @@
-const mongoose = require('mongoose');
-const Schema = mongoose.Schema;
+import { Schema, model } from 'mongoose';
 const PostSchema = new Schema({
     title: {
         type: String,
@@ -16,7 +15,15 @@ const PostSchema = new Schema({
     updatedAt: {
         type: Date,
         default: Date.now
+    },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
+    category:{
+        type: Schema.Types.ObjectId,
+        ref: 'Category',
     }
 });
 
-module.exports= mongoose.model('Post', PostSchema);
+export default model('Post', PostSchema);

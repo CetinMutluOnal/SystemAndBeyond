@@ -1,9 +1,10 @@
-const express = require('express');
-const router = express.Router();
-const Post = require('../models/Post');
-const User = require('../models/User');
-const bcrypt = require('bcrypt');
-const jwt = require("jsonwebtoken");
+import { Router } from 'express';
+const router = Router();
+import Post from '../../models/Post.js';
+import User from '../../models/User.js';
+import { hash, compare } from 'bcrypt';
+import pkg from 'jsonwebtoken';
+const { verify, sign } = pkg;
 const jwtSecret = process.env.JWT_SECRET;
 /**
  *
@@ -18,7 +19,7 @@ const authMiddleware = (req, res, next) => {
     }
 
     try{
-        const decoded = jwt.verify(token, jwtSecret);
+        const decoded = verify(token, jwtSecret);
         req.userId = decoded.userId;
         next();
     } catch(error){
@@ -77,7 +78,7 @@ router.get('/admin', async (req,res) => {
 router.post('/admin/register', async(req,res) => {
     try {
         const { name,email, password } = req.body;
-        const user = await User.create({name,email, password: await bcrypt.hash(password,10) });
+        const user = await User.create({name,email, password: await hash(password,10) });
         res.status(201).json({message: 'User Created', user});
     } catch (error) {
         console.log(error);
@@ -96,8 +97,8 @@ router.post('/admin/login', async(req,res) => {
         if (!user){
             res.status(401).json({message: 'We can not find any user with this e-mail.'})
         }
-        if (await bcrypt.compare(password,user.password)){
-            const token = jwt.sign({ userId: user._id}, jwtSecret );
+        if (await compare(password,user.password)){
+            const token = sign({ userId: user._id}, jwtSecret );
             res.cookie('token', token, { httpOnly: true });
             res.redirect('/admin/dashboard');
         } else {
@@ -237,4 +238,4 @@ router.delete('/admin/delete-post/:id',authMiddleware, async(req, res) => {
 
 });
 
-module.exports = router;
+export default router;

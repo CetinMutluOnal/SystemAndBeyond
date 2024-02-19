@@ -63,7 +63,7 @@ router.get('/admin', async (req,res) => {
             description: "Created By System And Beyond Squad."
         }
 
-    res.render('admin/index', {locals, layout: 'layouts/admin'});
+    res.render('admin/login', {locals, layout: 'layouts/admin-login'});
     } catch (error) {
         console.log(error);
     }
@@ -99,7 +99,7 @@ router.post('/admin/login', async(req,res) => {
         if (await bcrypt.compare(password,user.password)){
             const token = jwt.sign({ userId: user._id}, jwtSecret );
             res.cookie('token', token, { httpOnly: true });
-            res.redirect('/dashboard');
+            res.redirect('/admin/dashboard');
         } else {
             console.log("Wrong Password");
         }
@@ -115,7 +115,7 @@ router.post('/admin/login', async(req,res) => {
 
 router.get('/admin/logout', authMiddleware, async(req,res) => {
     res.clearCookie('token');
-    res.redirect('/');
+    res.redirect('/admin');
 })
 
 /**

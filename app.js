@@ -11,6 +11,7 @@ import session from 'express-session';
 import isActiveRoute from './server/helpers/routeHelpers.js';
 import webRoutes from './server/routes/web/main.js';
 import adminRoutes from './server/routes/admin/admin.js';
+import categoryRoutes from './server/routes/admin/category.js';
 
 
 const app = express();
@@ -46,6 +47,7 @@ app.locals.isActiveRoute = isActiveRoute;
 
 app.use('/', webRoutes);
 app.use('/', adminRoutes);
+app.use('/', categoryRoutes);
 
 app.listen(PORT, () => {
     console.log(`App listening on ${PORT}`);

@@ -11,7 +11,7 @@ const jwtSecret = process.env.JWT_SECRET;
  * Check Login
  */
 
-const authMiddleware = (req, res, next) => {
+export const authMiddleware = (req, res, next) => {
     const token = req.cookies.token;
 
     if (!token) {

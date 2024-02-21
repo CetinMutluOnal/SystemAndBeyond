@@ -11,6 +11,15 @@
   <label for="content"><b>Content</b></label>
   <textarea name="content" cols="50" rows="10"></textarea>
 
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">Select Category</label>
+    <select class="form-control" id="exampleFormControlSelect2" name="category">
+      <% categories.forEach(category => { %>
+        <option><%= category.title  %></option>
+      <% }) %>
+    </select>
+  </div>
+
   <input type="submit" value="Add" class="btn">
 
 </form>

@@ -2,20 +2,31 @@
 <div class="admin-title">
   <h2>View / Edit Post</h2>
 
-  <form action="/admin/delete-post/<%= data._id %>?_method=DELETE" method="POST">
-    <input type="submit" value="Delete" class="btn-delete btn">
+  <form action="/admin/delete-post/<%= post._id %>?_method=DELETE" method="POST">
+    <input type="submit" value="Delete" class="btn-delete btn btn-outline-danger">
   </form>
 
 </div>
 
-<form action="/admin/edit-post/<%= data._id %>?_method=PUT" method="POST">
+<form action="/admin/edit-post/<%= post._id %>?_method=PUT" method="POST">
 
   <label for="title"><b>Title</b></label>
-  <input type="text" placeholder="Post Title" name="title" value="<%= data.title %>">
+  <input type="text" placeholder="Post Title" name="title" value="<%= post.title %>">
 
   <label for="content"><b>Content</b></label>
-  <textarea name="content" cols="50" rows="10"><%= data.content %></textarea>
+  <textarea name="content" cols="50" rows="10"><%= post.content %></textarea>
 
-  <input type="submit" value="Update" class="btn">
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">Select Category</label>
+    <select class="form-control" id="exampleFormControlSelect2" name="category">
+      <% categories.forEach(category => { %>
+        <option  value="<%= category._id %>" <% if (post.category.equals(category._id)) { %> selected <% } %>> 
+          <%= category.title %>
+        </option>
+      <% }) %>
+    </select>
+  </div>
+
+  <input type="submit" value="Update" class="btn btn-outline-primary">
 
 </form>

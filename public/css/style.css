@@ -207,10 +207,6 @@ flex-direction: column;
     filter: none;
 }
 
-.post-ul:hover li{
-    filter:blur(3px);
-} 
-
 .post-ul:hover li:hover{
     filter:none;
 } 

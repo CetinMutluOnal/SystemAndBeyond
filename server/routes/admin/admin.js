@@ -4,6 +4,7 @@ import Post from '../../models/Post.js';
 import User from '../../models/User.js';
 import { hash, compare } from 'bcrypt';
 import pkg from 'jsonwebtoken';
+import Category from '../../models/Category.js';
 const { verify, sign } = pkg;
 const jwtSecret = process.env.JWT_SECRET;
 /**
@@ -150,6 +151,7 @@ router.get('/admin/posts',authMiddleware ,async(req, res) => {
 router.get('/admin/add-post',authMiddleware, async(req, res) => {
     
     try {
+        const categories = await Category.find();
         const locals= {
             title: "Add Post",
             description: "Created By System And Beyond Squad."
@@ -157,6 +159,7 @@ router.get('/admin/add-post',authMiddleware, async(req, res) => {
         const data = await Post.find();
         res.render('admin/posts/add-post',{
             locals,
+            categories,
             layout: 'layouts/admin'
         });
     } catch (error) {
@@ -172,10 +175,12 @@ router.get('/admin/add-post',authMiddleware, async(req, res) => {
 
 router.post('/admin/add-post',authMiddleware, async(req, res) => {
     try {
+        const selectedCategory = await Category.findOne({title: req.body.category});
         const newPost = new Post({
             title: req.body.title,
             content: req.body.content,
-        })
+            category: selectedCategory._id
+        });
         try {
             await Post.create(newPost);
             res.redirect('/admin/posts');   
@@ -195,10 +200,11 @@ router.get('/admin/edit-post/:id',authMiddleware, async(req, res) => {
             title: "Edit Post",
             description: "Created By System And Beyond Squad."
         }
-        const data = await Post.findOne({_id: req.params.id});
+        const post = await Post.findOne({_id: req.params.id});
         res.render('admin/posts/edit-post',{
             locals,
-            data,
+            post,
+            categories: await Category.find(),
             layout: 'layouts/admin'
         });
     } catch (error) {
@@ -209,9 +215,11 @@ router.get('/admin/edit-post/:id',authMiddleware, async(req, res) => {
 
 router.put('/admin/edit-post/:id',authMiddleware, async(req, res) => {
     try {
+        console.log(req.body.category);
         await Post.findByIdAndUpdate(req.params.id, {
             title: req.body.title,
             content: req.body.content,
+            category: req.body.category,
             updatedAt: Date.now(),
         });
 

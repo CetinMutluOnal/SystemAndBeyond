@@ -156,7 +156,6 @@ router.get('/admin/add-post',authMiddleware, async(req, res) => {
             title: "Add Post",
             description: "Created By System And Beyond Squad."
         }
-        const data = await Post.find();
         res.render('admin/posts/add-post',{
             locals,
             categories,
@@ -175,11 +174,10 @@ router.get('/admin/add-post',authMiddleware, async(req, res) => {
 
 router.post('/admin/add-post',authMiddleware, async(req, res) => {
     try {
-        const selectedCategory = await Category.findOne({title: req.body.category});
         const newPost = new Post({
             title: req.body.title,
             content: req.body.content,
-            category: selectedCategory._id
+            category: req.body.category,
         });
         try {
             await Post.create(newPost);

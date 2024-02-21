@@ -15,7 +15,7 @@
     <label for="exampleFormControlSelect2">Select Category</label>
     <select class="form-control" id="exampleFormControlSelect2" name="category">
       <% categories.forEach(category => { %>
-        <option><%= category.title  %></option>
+        <option value="<%= category._id %>" ><%= category.title  %></option>
       <% }) %>
     </select>
   </div>

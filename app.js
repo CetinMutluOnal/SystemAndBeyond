@@ -10,8 +10,9 @@ import connectDB from './server/config/db.js';
 import session from 'express-session';
 import isActiveRoute from './server/helpers/routeHelpers.js';
 import webRoutes from './server/routes/web/main.js';
-import adminRoutes from './server/routes/admin/admin.js';
-import categoryRoutes from './server/routes/admin/category.js';
+import adminAuthRoutes from './server/routes/admin/auth.js';
+import adminCategoryRoutes from './server/routes/admin/category.js';
+import adminPostRoutes from './server/routes/admin/post.js';
 
 
 const app = express();
@@ -46,8 +47,9 @@ app.set('view engine', 'ejs');
 app.locals.isActiveRoute = isActiveRoute;
 
 app.use('/', webRoutes);
-app.use('/', adminRoutes);
-app.use('/', categoryRoutes);
+app.use('/admin', adminAuthRoutes);
+app.use('/admin', adminCategoryRoutes);
+app.use('/admin', adminPostRoutes);
 
 app.listen(PORT, () => {
     console.log(`App listening on ${PORT}`);

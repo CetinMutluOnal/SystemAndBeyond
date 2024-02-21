@@ -16,10 +16,10 @@ const PostSchema = new Schema({
         type: Date,
         default: Date.now
     },
-    // author: {
-    //     type: Schema.Types.ObjectId,
-    //     ref: 'User'
-    // },
+    author: {
+        type: Schema.Types.ObjectId,
+        ref: 'User'
+    },
     category:{
         type: Schema.Types.ObjectId,
         ref: 'Category',

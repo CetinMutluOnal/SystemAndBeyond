@@ -2,9 +2,9 @@ import { Router } from 'express';
 const router = Router();
 import Post from '../../models/Post.js';
 import Category from '../../models/Category.js';
-import { authMiddleware } from './admin.js';
+import { authMiddleware } from './auth.js';
 
-router.get('/admin/categories', authMiddleware, async (req,res) => {
+router.get('/categories', authMiddleware, async (req,res) => {
     try {
         const locals = {
             title: "Admin Categories Control",
@@ -48,7 +48,7 @@ router.get('/admin/categories', authMiddleware, async (req,res) => {
 // });
 
 
-router.get('/admin/add-category', authMiddleware, async (req,res) => {
+router.get('/add-category', authMiddleware, async (req,res) => {
     try{
         res.render('admin/categories/add-category', {
             layout: 'layouts/admin'
@@ -58,7 +58,7 @@ router.get('/admin/add-category', authMiddleware, async (req,res) => {
     }
 }) 
 
-router.post('/admin/category', authMiddleware, async (req, res) => {
+router.post('/category', authMiddleware, async (req, res) => {
     try {
         const newCategory = await Category.create({
             title: req.body.title,
@@ -66,13 +66,13 @@ router.post('/admin/category', authMiddleware, async (req, res) => {
         if( !newCategory){
             res.status('502').json({message: 'Bad Request'});
         }
-        res.redirect('/admin/categories');
+        res.redirect('/categories');
     } catch (error) {
         console.log(error);
     }
 });
 
-router.get('/admin/edit-category/:id', authMiddleware, async (req,res) => {
+router.get('/edit-category/:id', authMiddleware, async (req,res) => {
     try{
         const locals= {
             title: "Edit Category",
@@ -93,21 +93,21 @@ router.get('/admin/edit-category/:id', authMiddleware, async (req,res) => {
     }
 })
 
-router.put('/admin/edit-category/:id', authMiddleware, async (req, res) => {
+router.put('/edit-category/:id', authMiddleware, async (req, res) => {
     try {
         await Category.findByIdAndUpdate(req.params.id, {
             title: req.body.title,
         });
-        res.redirect('/admin/categories');
+        res.redirect('/categories');
     } catch (error) {
         console.log(error);
     }
 });
 
-router.delete('/admin/delete-category/:id', authMiddleware, async (req, res) => {
+router.delete('/delete-category/:id', authMiddleware, async (req, res) => {
     try {
         await Category.findByIdAndDelete(req.params.id);
-        res.redirect('/admin/categories');
+        res.redirect('/categories');
     } catch (error) {
         console.log(error);
     }

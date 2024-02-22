@@ -15,9 +15,8 @@ export const authMiddleware = (req, res, next) => {
     const token = req.cookies.token;
 
     if (!token) {
-        return res.status(401).json({ message:'Unauthorized'});
+        return res.redirect('/admin/login');
     }
-
     try{
         const decoded = verify(token, jwtSecret);
         req.userId = decoded.userId;
@@ -57,19 +56,45 @@ router.get('/dashboard',authMiddleware ,async(req, res) => {
  * Admin - Login Page
  */
 
-router.get('/', async (req,res) => {
+router.get('/',authMiddleware ,async (req,res) => {
+    try {
+        res.redirect('/admin/dashboard')
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+router.get('/login', async (req,res) => {
     try {
         const locals= {
             title: "Admin",
             description: "Created By System And Beyond Squad."
         }
 
-    res.render('admin/login', {locals, layout: 'layouts/admin-login'});
+    res.render('admin/auth/login', {locals, layout: 'layouts/admin-login'});
     } catch (error) {
         console.log(error);
     }
 })
 
+
+/**
+ * Get /
+ * Admin - Register
+ */
+
+router.get('/register', async(req,res) => {
+    try {
+        const locals= {
+            title: "Admin",
+            description: "Created By System And Beyond Squad."
+        }
+
+    res.render('admin/auth/register', {locals, layout: 'layouts/admin-login'});
+    } catch (error) {
+        console.log(error);
+    }
+})
 /**
  * Post /
  * Admin - Register
@@ -78,8 +103,8 @@ router.get('/', async (req,res) => {
 router.post('/register', async(req,res) => {
     try {
         const { name,email, password } = req.body;
-        const user = await User.create({name,email, password: await hash(password,10) });
-        res.status(201).json({message: 'User Created', user});
+        await User.create({name,email, password: await hash(password,10) });
+        res.redirect('/admin') 
     } catch (error) {
         console.log(error);
     }

@@ -32,7 +32,7 @@ export const authMiddleware = (req, res, next) => {
  *
  * Get Dashboard
  */
-router.get('/admin/dashboard',authMiddleware ,async(req, res) => {
+router.get('/dashboard',authMiddleware ,async(req, res) => {
     
     try {
         const locals= {
@@ -57,7 +57,7 @@ router.get('/admin/dashboard',authMiddleware ,async(req, res) => {
  * Admin - Login Page
  */
 
-router.get('/admin', async (req,res) => {
+router.get('/', async (req,res) => {
     try {
         const locals= {
             title: "Admin",
@@ -75,7 +75,7 @@ router.get('/admin', async (req,res) => {
  * Admin - Register
  */
 
-router.post('/admin/register', async(req,res) => {
+router.post('/register', async(req,res) => {
     try {
         const { name,email, password } = req.body;
         const user = await User.create({name,email, password: await hash(password,10) });
@@ -90,7 +90,7 @@ router.post('/admin/register', async(req,res) => {
  * Admin - Login
  */
 
-router.post('/admin/login', async(req,res) => {
+router.post('/login', async(req,res) => {
     try {
         const { email, password } = req.body;
         const user = await User.findOne({email});
@@ -114,7 +114,7 @@ router.post('/admin/login', async(req,res) => {
  * Admin - Logout
  */
 
-router.get('/admin/logout', authMiddleware, async(req,res) => {
+router.get('/logout', authMiddleware, async(req,res) => {
     res.clearCookie('token');
     res.redirect('/admin');
 })

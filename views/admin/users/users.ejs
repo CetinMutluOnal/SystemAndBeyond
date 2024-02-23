@@ -4,7 +4,7 @@
     <ul class="admin-posts">
         <% users.forEach(user => { %>
          <li>
-            <a href="/user/<%= user._id %>">
+            <a href="/author/<%= user.name %>">
                 <%= user.name %> &nearr;
             </a>
             <div class="admin-post-controls">

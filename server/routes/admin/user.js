@@ -47,6 +47,7 @@ router.get('/edit-user/:id', authMiddleware, async (req, res) => {
     
 });
 
+
 router.post('/add-avatar/:id', authMiddleware, (req,res) =>  {
     try {
         if (req.file) {

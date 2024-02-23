@@ -4,6 +4,8 @@ import User from "../../models/User.js";
 import Post from "../../models/Post.js";
 import Category from "../../models/Category.js";
 import { authMiddleware } from "./auth.js";
+import upload from "../../helpers/uploadHelpers.js";
+
 
 /**
  * Get Users Page
@@ -45,12 +47,26 @@ router.get('/edit-user/:id', authMiddleware, async (req, res) => {
     
 });
 
-router.put('/edit-user/:id', authMiddleware, async (req, res) => {
+router.post('/add-avatar/:id', authMiddleware, (req,res) =>  {
+    try {
+        if (req.file) {
+            res.json({
+              message: 'Avatar başarıyla yüklendi.',
+              filename: req.file.filename,
+            });
+        }
+    } catch (error) {
+        console.log(error);
+    }
+})
+
+router.put('/edit-user/:id', authMiddleware, upload.single('avatar'), async (req, res) => {
     try{
         await User.findByIdAndUpdate(req.params.id, {
             name: req.body.name,
             email: req.body.email,
             about: req.body?.about,
+            avatar: req.file?.filename,
             updatedAt: Date.now()
         });
         res.redirect(`/admin/edit-user/${req.params.id}`,)

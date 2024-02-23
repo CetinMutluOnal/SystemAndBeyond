@@ -21,3 +21,19 @@ document.addEventListener('DOMContentLoaded', function(){
     });
 
 });
+
+document.getElementById('fileInput').addEventListener('change', function (event) {
+    const fileInput = event.target;
+    const file = fileInput.files[0];
+
+    if (file) {
+        const reader = new FileReader();
+
+        reader.onload = function (e) {
+            const avatarImage = document.getElementById('avatarImage');
+            avatarImage.src = e.target.result;
+        };
+
+        reader.readAsDataURL(file);
+    }
+});

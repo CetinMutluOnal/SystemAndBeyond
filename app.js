@@ -4,6 +4,8 @@ import express, { urlencoded, json } from 'express';
 import expressLayouts from 'express-ejs-layouts';
 import methodOverride from 'method-override';
 import cookieParser from 'cookie-parser';
+import bodyParser from 'body-parser';
+import multer from 'multer';
 import pkg from 'connect-mongo';
 const { create } = pkg;
 import connectDB from './server/config/db.js';
@@ -22,11 +24,11 @@ const PORT = 5000 || process.env.PORT;
 // Connect to DB
 
 connectDB();
-
 app.use(urlencoded({ extended: true}));
 app.use(json());
 app.use(cookieParser());
 app.use(methodOverride('_method'));
+
 
 app.use(session({
     secret: 'keyboard cat',
@@ -52,6 +54,7 @@ app.use('/admin', adminAuthRoutes);
 app.use('/admin', adminCategoryRoutes);
 app.use('/admin', adminPostRoutes);
 app.use('/admin', adminUsersRoutes);
+
 
 app.listen(PORT, () => {
     console.log(`App listening on ${PORT}`);

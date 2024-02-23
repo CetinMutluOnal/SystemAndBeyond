@@ -13,6 +13,9 @@ const UserSchema= new Schema({
         type: String,
         required: true
     },
+    about:{
+        type: String,
+    },
     createdAt: {
         type: Date,
         default: Date.now

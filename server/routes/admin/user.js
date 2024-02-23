@@ -47,7 +47,6 @@ router.get('/edit-user/:id', authMiddleware, async (req, res) => {
 
 router.put('/edit-user/:id', authMiddleware, async (req, res) => {
     try{
-        
         await User.findByIdAndUpdate(req.params.id, {
             name: req.body.name,
             email: req.body.email,

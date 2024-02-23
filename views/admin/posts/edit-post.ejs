@@ -2,31 +2,35 @@
 <div class="admin-title">
   <h2>View / Edit Post</h2>
 
-  <form action="/admin/delete-post/<%= post._id %>?_method=DELETE" method="POST">
-    <input type="submit" value="Delete" class="btn-delete btn btn-outline-danger">
+  <form action="/admin/delete-post/<%= post._id %>?_method=DELETE" method="POST"  class="form-group">
+    <button type="submit" value="Delete" class="btn-delete btn btn-outline-danger">
+      <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash3" viewBox="0 0 16 16">
+        <path d="M6.5 1h3a.5.5 0 0 1 .5.5v1H6v-1a.5.5 0 0 1 .5-.5M11 2.5v-1A1.5 1.5 0 0 0 9.5 0h-3A1.5 1.5 0 0 0 5 1.5v1H1.5a.5.5 0 0 0 0 1h.538l.853 10.66A2 2 0 0 0 4.885 16h6.23a2 2 0 0 0 1.994-1.84l.853-10.66h.538a.5.5 0 0 0 0-1zm1.958 1-.846 10.58a1 1 0 0 1-.997.92h-6.23a1 1 0 0 1-.997-.92L3.042 3.5zm-7.487 1a.5.5 0 0 1 .528.47l.5 8.5a.5.5 0 0 1-.998.06L5 5.03a.5.5 0 0 1 .47-.53Zm5.058 0a.5.5 0 0 1 .47.53l-.5 8.5a.5.5 0 1 1-.998-.06l.5-8.5a.5.5 0 0 1 .528-.47M8 4.5a.5.5 0 0 1 .5.5v8.5a.5.5 0 0 1-1 0V5a.5.5 0 0 1 .5-.5"/>
+    </svg>
+    </button>
   </form>
 
 </div>
 
-<form action="/admin/edit-post/<%= post._id %>?_method=PUT" method="POST">
+<form action="/admin/edit-post/<%= post._id %>?_method=PUT" method="POST"  class="form-group">
 
   <label for="title"><b>Title</b></label>
-  <input type="text" placeholder="Post Title" name="title" value="<%= post.title %>">
+  <input type="text" placeholder="Post Title" name="title" class="form-control" value="<%= post.title %>">
 
   <label for="content"><b>Content</b></label>
-  <textarea name="content" cols="50" rows="10"><%= post.content %></textarea>
+  <textarea name="content" cols="50" rows="10" class="form-control"><%= post.content %></textarea>
 
   <div class="form-group">
     <label for="exampleFormControlSelect2">Select Category</label>
     <select class="form-control" id="exampleFormControlSelect2" name="category">
       <% categories.forEach(category => { %>
-        <option  value="<%= category._id %>" <% if (post.category.equals(category._id)) { %> selected <% } %>> 
+        <option  value="<%= category._id %>" <% if (post.category && post.category.equals(category._id)) { %> selected <% } %>> 
           <%= category.title %>
         </option>
       <% }) %>
     </select>
   </div>
 
-  <input type="submit" value="Update" class="btn btn-outline-primary">
+  <input type="submit" value="Update" class="btn btn-outline-success">
 
 </form>

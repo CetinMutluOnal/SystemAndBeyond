@@ -215,7 +215,7 @@ flex-direction: column;
 } 
 
 .post{
-    white-space: pre-wrap;
+    /* white-space: pre-wrap; */
 }
 
 .pagination{

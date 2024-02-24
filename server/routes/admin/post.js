@@ -108,7 +108,7 @@ router.put('/edit-post/:id',authMiddleware,postCoverImageUpload.single('cover'),
             title: req.body.title,
             content: req.body.content,
             category: req.body.category,
-            coverImage: req.file.filename,
+            coverImage: req.file?.filename,
             updatedAt: Date.now(),
         });
 

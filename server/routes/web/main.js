@@ -53,8 +53,8 @@ router.get('/post/:id', async (req,res) => {
         }
 
         let slug = req.params.id;
-        const data = await Post.findById({ _id: slug })
-        res.render('post', { locals,data, currentRoute: `/post/${slug}` });
+        const post = await Post.findById({ _id: slug })
+        res.render('web/Post/post', { locals,post, currentRoute: `/post/${slug}` });
     } catch (error) {
         console.log(error);
     }

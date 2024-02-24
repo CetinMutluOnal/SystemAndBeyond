@@ -4,7 +4,7 @@ import User from "../../models/User.js";
 import Post from "../../models/Post.js";
 import Category from "../../models/Category.js";
 import { authMiddleware } from "./auth.js";
-import upload from "../../helpers/uploadHelpers.js";
+import userImageUpload from "../../helpers/uploadHelpers.js";
 
 
 /**
@@ -61,7 +61,7 @@ router.post('/add-avatar/:id', authMiddleware, (req,res) =>  {
     }
 })
 
-router.put('/edit-user/:id', authMiddleware, upload.single('avatar'), async (req, res) => {
+router.put('/edit-user/:id', authMiddleware, userImageUpload.single('avatar'), async (req, res) => {
     try{
         await User.findByIdAndUpdate(req.params.id, {
             name: req.body.name,

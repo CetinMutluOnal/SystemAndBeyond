@@ -1,6 +1,6 @@
 import multer from 'multer';
 
-const storage = multer.diskStorage({
+const userStorage = multer.diskStorage({
     destination: function (req, file, cb) {
         cb(null, 'public/img/users/');
     },
@@ -9,6 +9,5 @@ const storage = multer.diskStorage({
     }
 });
 
-const upload = multer({ storage: storage });
-
-export default upload;
+const userImageUpload = multer({ storage: userStorage });
+export default userImageUpload;

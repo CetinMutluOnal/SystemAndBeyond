@@ -12,7 +12,17 @@
 
 </div>
 
-<form action="/admin/edit-post/<%= post._id %>?_method=PUT" method="POST"  class="form-group">
+<form action="/admin/edit-post/<%= post._id %>?_method=PUT" method="POST"  class="form-group"  enctype="multipart/form-data">
+
+  <div class="cover-container">
+    <input type="file" id="coverInput" name="cover" accept="image/*" style="display: none;" />
+    <label for="coverInput" class="cover">
+      <%
+        coverImageSrc = post.coverImage ? "http://localhost:5000/img/posts/covers/" + post.coverImage : "http://localhost:5000/img/posts/covers/default.jpg";
+      %>
+        <img src="<%= coverImageSrc %>" id="coverImage" class="cover-image">
+    </label>
+  </div>
 
   <label for="title"><b>Title</b></label>
   <input type="text" placeholder="Post Title" name="title" class="form-control" value="<%= post.title %>">

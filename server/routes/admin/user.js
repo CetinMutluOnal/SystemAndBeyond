@@ -4,7 +4,8 @@ import User from "../../models/User.js";
 import Post from "../../models/Post.js";
 import Category from "../../models/Category.js";
 import { authMiddleware } from "./auth.js";
-import userImageUpload from "../../helpers/uploadHelpers.js";
+import uploadHelpers from "../../helpers/uploadHelpers.js";
+const userImageUpload = uploadHelpers.userImageUpload;
 
 
 /**

@@ -3,7 +3,14 @@
   <h2>Add New Post</h2>
 </div>
 
-<form action="/admin/add-post" method="POST" class="form-group">
+<form action="/admin/add-post" method="POST" class="form-group"  enctype="multipart/form-data" >
+
+  <div class="cover-container">
+    <input type="file" id="coverInput" name="cover" accept="image/*" style="display: none;" />
+    <label for="coverInput" class="cover">
+        <img src="http://localhost:5000/img/posts/covers/default.jpg" id="coverImage" class="cover-image">
+    </label>
+  </div>
 
   <label for="title"><b>Title</b></label>
   <input type="text" placeholder="Post Title" name="title"class="form-control">

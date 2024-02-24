@@ -9,5 +9,19 @@ const userStorage = multer.diskStorage({
     }
 });
 
+const postCoverStorage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'public/img/posts/covers/');
+    },
+    filename: function (req, file, cb) {
+        cb(null, Date.now() + '-' + file.originalname);
+    }
+});
+
+
 const userImageUpload = multer({ storage: userStorage });
-export default userImageUpload;
+const postCoverImageUpload = multer({ storage: postCoverStorage});
+export default {
+    userImageUpload,
+    postCoverImageUpload,
+}

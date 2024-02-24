@@ -3,6 +3,8 @@ const router = Router();
 import Post from "../../models/Post.js";
 import Category from "../../models/Category.js";
 import { authMiddleware } from "./auth.js";
+import uploadHelpers from "../../helpers/uploadHelpers.js";
+const postCoverImageUpload = uploadHelpers.postCoverImageUpload;
 
 
 /**
@@ -57,12 +59,14 @@ router.get('/add-post',authMiddleware, async(req, res) => {
  * Admin - Create New Post
  */
 
-router.post('/add-post',authMiddleware, async(req, res) => {
+router.post('/add-post',authMiddleware, postCoverImageUpload.single('cover'), async(req, res) => {
     try {
+        console.log(req.file);
         const newPost = new Post({
             title: req.body.title,
             content: req.body.content,
             category: req.body.category,
+            coverImage: req.file.filename,
             author: req.userId
         });
         try {
@@ -97,13 +101,14 @@ router.get('/edit-post/:id',authMiddleware, async(req, res) => {
 
 });
 
-router.put('/edit-post/:id',authMiddleware, async(req, res) => {
+router.put('/edit-post/:id',authMiddleware,postCoverImageUpload.single('cover'), async(req, res) => {
     try {
-        console.log(req.body.category);
+        console.log(req.file);
         await Post.findByIdAndUpdate(req.params.id, {
             title: req.body.title,
             content: req.body.content,
             category: req.body.category,
+            coverImage: req.file.filename,
             updatedAt: Date.now(),
         });
 

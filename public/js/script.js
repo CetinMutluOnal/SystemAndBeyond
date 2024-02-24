@@ -22,18 +22,34 @@ document.addEventListener('DOMContentLoaded', function(){
 
 });
 
-document.getElementById('fileInput').addEventListener('change', function (event) {
+document.body.addEventListener('change', function (event) {
+    if (event.target.id === 'fileInput') {
     const fileInput = event.target;
     const file = fileInput.files[0];
-
     if (file) {
-        const reader = new FileReader();
+            const avatarReader = new FileReader();
 
-        reader.onload = function (e) {
+        avatarReader.onload = function (e) {
             const avatarImage = document.getElementById('avatarImage');
             avatarImage.src = e.target.result;
         };
 
-        reader.readAsDataURL(file);
+        avatarReader.readAsDataURL(file);
+    }
+        } 
+    else if (event.target.id === 'coverInput') {
+        const fileInput = event.target;
+        const file = fileInput.files[0];
+        if (file) {
+            const coverReader = new FileReader();
+
+        coverReader.onload = function (e) {
+            console.log('Image Data URL:', e.target.result);
+            const coverImage = document.getElementById('coverImage');
+            coverImage.src = e.target.result;
+        };
+
+        coverReader.readAsDataURL(file);
+        }
     }
 });

@@ -1,0 +1,27 @@
+.cover-container {
+    position: relative;
+    width: 100%;
+    height: 30rem;
+    margin: auto;
+}
+
+.cover {
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: 1px solid var(--systemandbeyond);
+    overflow: hidden;
+    cursor: pointer;
+    object-fit: cover;
+    object-position: center;
+}
+
+.cover-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.cover:hover {
+    opacity: 0.8;
+}

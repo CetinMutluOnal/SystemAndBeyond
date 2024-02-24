@@ -23,6 +23,10 @@ const PostSchema = new Schema({
     category:{
         type: Schema.Types.ObjectId,
         ref: 'Category',
+    },
+    coverImage: {
+        type: String,
+        required: true,
     }
 });
 

@@ -17,6 +17,7 @@ import adminCategoryRoutes from './server/routes/admin/category.js';
 import adminPostRoutes from './server/routes/admin/post.js';
 import adminUsersRoutes from './server/routes/admin/user.js';
 import webAuthorRoutes from './server/routes/web/author.js';
+import webCategoryRoutes from './server/routes/web/category.js';
 
 
 const app = express();
@@ -56,6 +57,7 @@ app.use('/admin', adminCategoryRoutes);
 app.use('/admin', adminPostRoutes);
 app.use('/admin', adminUsersRoutes);
 app.use('/',webAuthorRoutes);
+app.use('/',webCategoryRoutes);
 
 app.listen(PORT, () => {
     console.log(`App listening on ${PORT}`);

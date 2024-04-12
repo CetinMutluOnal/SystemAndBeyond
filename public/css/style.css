@@ -156,9 +156,14 @@ textarea{
 }
 
 /* Posts */
-
 .post__headers{
     margin-top: 4rem;
+}
+
+.post{
+    display: flex;
+    flex-direction: column;
+    align-items: space-between;
 }
 
 .post-ul{
@@ -183,16 +188,27 @@ flex-direction: column;
     justify-content: space-between;
     text-decoration: none;
     margin: 18px 0;
+    padding: 1rem;
 }
 
 @media only screen and (min-width: 768px){
-    .post-ul li a{
+
+    .post-container{
+    display: flex;
+    justify-content: space-between;
+    padding: 1rem;
+    gap: 15px;
+}
+
+    /* .post-ul li a{
         flex-direction: row;
         align-items: center;
-    }
+    } */
 
     .post-list__date{
         text-align: right;
+        align-self: flex-end;
+        display: block;
     }
 }
 
@@ -200,6 +216,13 @@ flex-direction: column;
     font-size: 24px;
     cursor: pointer;
     transition: filter 0.1s;
+    border: 1px solid var(--systemandbeyond);
+    border-radius: 5px;
+}
+
+.content-preview{
+    font-size: small;
+    align-self: center;
 }
 
 .post-ul li:not(:last-child){
@@ -214,8 +237,8 @@ flex-direction: column;
     filter:none;
 } 
 
-.post{
-    /* white-space: pre-wrap; */
+.post p{
+    white-space: pre-line;
 }
 
 .pagination{

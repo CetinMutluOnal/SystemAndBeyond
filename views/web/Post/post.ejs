@@ -10,5 +10,17 @@
         </label>
       </div>
 
-    <%= post.content  %>
+    <p>
+      <%= post.content  %>
+    </p>
+    
+      <div class="author-container">
+        <div class="author">
+          <img src="http://localhost:5000/img/users/<%=author.avatar %>"  id="postAvatarImage" class="avatar-image">
+        </div>
+        <div class="author-info">
+          <h3><%= author.name  %></h3>
+        <p> <%= author.about %></p>
+      </div>
+    </div>
 </article>

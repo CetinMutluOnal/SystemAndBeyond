@@ -1,6 +1,7 @@
 import { Router } from 'express';
 const router = Router();
 import Post from '../../models/Post.js';
+import User from '../../models/User.js';
 
 
 /**
@@ -54,7 +55,13 @@ router.get('/post/:id', async (req,res) => {
 
         let slug = req.params.id;
         const post = await Post.findById({ _id: slug })
-        res.render('web/Post/post', { locals,post, currentRoute: `/post/${slug}` });
+        const author = await User.findById(post.author)
+        res.render('web/Post/post', {
+            locals,
+            post,
+            author,
+            currentRoute: `/post/${slug}`
+        });
     } catch (error) {
         console.log(error);
     }

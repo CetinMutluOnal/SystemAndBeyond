@@ -29,7 +29,7 @@ router.get('', async (req, res) => {
         const hasNextPage = nextPage <= Math.ceil(count / perPage);
 
 
-        res.render('index',{
+        res.render('web/home',{
             locals,
             data,
             current: page,

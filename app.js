@@ -57,7 +57,14 @@ app.use('/admin', adminCategoryRoutes);
 app.use('/admin', adminPostRoutes);
 app.use('/admin', adminUsersRoutes);
 app.use('/',webAuthorRoutes);
-app.use('/',webCategoryRoutes);
+app.use('/category',webCategoryRoutes);
+
+app.use(function (req,res,next) {
+    res.status(404).render('response/notfound',{
+        layout: 'layouts/main',
+        currentRoute:'/',
+    });
+})
 
 app.listen(PORT, () => {
     console.log(`App listening on ${PORT}`);

@@ -19,7 +19,10 @@ router.get('/:title', async (req,res) => {
 
         const category = await Category.findOne({title: `${req.params.title}`});
         if(!category) {
-            return res.status(404).send('Category Not Found')
+            res.status(404).render('response/notfound',{
+                layout: 'layouts/main',
+                currentRoute:'/',
+            });
         }
         const data = await Post.aggregate([
             { $match: { category: category._id} },

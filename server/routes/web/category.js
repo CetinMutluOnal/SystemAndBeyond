@@ -40,7 +40,7 @@ router.get('/:title', async (req,res) => {
                 current: page,
                 layout: 'layouts/main',
                 nextPage: hasNextPage ? nextPage: null,
-                currentRoute:'/linux',
+                currentRoute:`/${req.params.title}`,
             });
     } catch(error){
         console.log(error);

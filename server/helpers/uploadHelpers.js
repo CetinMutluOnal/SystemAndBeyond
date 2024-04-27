@@ -5,7 +5,7 @@ const userStorage = multer.diskStorage({
         cb(null, 'public/img/users/');
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname);
+        cb(null, `${Date.now()} - ${file.originalname}`);
     }
 });
 
@@ -14,13 +14,15 @@ const postCoverStorage = multer.diskStorage({
         cb(null, 'public/img/posts/covers/');
     },
     filename: function (req, file, cb) {
-        cb(null, Date.now() + '-' + file.originalname);
+        cb(null, `${Date.now()} - ${file.originalname}`);
     }
 });
 
-
 const userImageUpload = multer({ storage: userStorage });
-const postCoverImageUpload = multer({ storage: postCoverStorage});
+const postCoverImageUpload = multer({ 
+    storage: postCoverStorage,
+    limits: 5*1024*1024,
+});
 export default {
     userImageUpload,
     postCoverImageUpload,

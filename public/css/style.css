@@ -3,10 +3,10 @@
     --gray: #7e7e7e;
     --gray-light: #e4e4e4;
     --red: #b30000;
-    --systemandbeyond: #ddf8fc;
     --font-size-base: 1rem;
     --border-radius: 5px;
     --systemandbeyond: #29ABE2;
+    --systemandbeyondlight: #d7f3ff;
     --skycolor: #ddf8fc;
 }
 
@@ -39,13 +39,17 @@ textarea{
 }
 
 .slider-container{
-    background-color: var(--systemandbeyond);
+    background-color: var(--systemandbeyondlight);
     display: flex;
     flex-direction: column;
     justify-content: center;
     padding-bottom: 1rem;
 }
 
+.carousel-control-next-icon,
+.carousel-control-prev-icon {
+    filter: invert(1);
+}
 
 .main{
     display: flex;
@@ -76,9 +80,6 @@ textarea{
 }
 
 @media only screen and (min-width: 768px){
-    .header{
-        
-    }
 }
 
 .header__logo{
@@ -155,6 +156,7 @@ textarea{
 .welcome__header{
     margin-top: 10px;
     margin-bottom: 5px;
+    color: var(--systemandbeyond);
 }
 
 .welcome__body{
@@ -171,6 +173,8 @@ textarea{
     display: flex;
     flex-direction: column;
     align-items: space-between;
+    overflow: hidden;
+    margin-top: 0 1rem;
 }
 
 .posts{
@@ -200,9 +204,11 @@ flex-direction: column;
     flex-direction: column;
     justify-content: space-between;
     text-decoration: none;
-    margin: 18px 0;
-    padding: 1rem;
     color: var(--systemandbeyond);
+}
+
+.post-ul li a:hover {
+    opacity: 0.8;
 }
 
 @media only screen and (min-width: 768px){
@@ -210,8 +216,8 @@ flex-direction: column;
     .post-container{
     display: flex;
     justify-content: space-between;
+    align-items: center;
     padding: 1rem;
-    gap: 15px;
 }
 
     /* .post-ul li a{
@@ -219,17 +225,20 @@ flex-direction: column;
         align-items: center;
     } */
 
-    .post-list__date{
+    /* .post-list__date{
         text-align: right;
         align-self: flex-end;
         display: block;
-    }
+    } */
 }
 
 .post-ul li{
     font-size: 24px;
     cursor: pointer;
     transition: filter 0.1s;
+    border-radius: 1rem;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+    margin: 1rem 0;
 }
 
 .content-preview{
@@ -238,7 +247,7 @@ flex-direction: column;
 }
 
 .post-ul li:not(:last-child){
-    border-bottom: 1px solid var(--gray-light);
+    border-bottom: 1px solid var(--gray);
 }
 
 .post-ul li:hover{

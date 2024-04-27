@@ -17,12 +17,15 @@ router.get('', async (req, res) => {
     try {
         let perPage= 10;
         let page= req.query.page || 1;
+        let sliderCount= 5;
         
-
+        const latestPosts= await Post.aggregate([{ $sort: {createdAt: -1 } }])
+        .limit(sliderCount)
+        .exec();
         const data = await Post.aggregate([ { $sort: {createdAt: -1 } } ])
-        .skip(perPage * page - perPage)
+        .skip(perPage * page - perPage + sliderCount )
         .limit(perPage)
-        .exec()
+        .exec();
 
         const count = await Post.countDocuments();
         const nextPage = parseInt(page) + 1;
@@ -32,6 +35,7 @@ router.get('', async (req, res) => {
         res.render('web/home',{
             locals,
             data,
+            latestPosts,
             current: page,
             nextPage: hasNextPage ? nextPage : null,
             currentRoute: '/',

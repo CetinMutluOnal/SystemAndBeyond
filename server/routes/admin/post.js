@@ -61,12 +61,11 @@ router.get('/add-post',authMiddleware, async(req, res) => {
 
 router.post('/add-post',authMiddleware, postCoverImageUpload.single('cover'), async(req, res) => {
     try {
-        console.log(req.file);
         const newPost = new Post({
             title: req.body.title,
+            coverImage: req.file.filename,
             content: req.body.content,
             category: req.body.category,
-            coverImage: req.file.filename,
             author: req.userId
         });
         try {
@@ -103,7 +102,6 @@ router.get('/edit-post/:id',authMiddleware, async(req, res) => {
 
 router.put('/edit-post/:id',authMiddleware,postCoverImageUpload.single('cover'), async(req, res) => {
     try {
-        console.log(req.file);
         await Post.findByIdAndUpdate(req.params.id, {
             title: req.body.title,
             content: req.body.content,

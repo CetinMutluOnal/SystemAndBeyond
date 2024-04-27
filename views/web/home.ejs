@@ -3,10 +3,6 @@
     <h1 class="welcome__header"> Welcome To System and Beyond!</h1>
 </div>
 
-<% 
-    let sliderData= data.slice(0,5)
-%>
-
 <div id="carouselExampleCaptions" class="carousel slide">
     <div class="carousel-indicators">
       <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
@@ -23,8 +19,8 @@
         <span class="carousel-control-next-icon" aria-hidden="true"></span>
         <span class="visually-hidden">Next</span>
       </button>
-    <% sliderData.forEach(post => { %>
-        <div class="carousel-item  <%= sliderData.indexOf(post) === 0 ? 'active' : '' %> " >
+    <% latestPosts.forEach(post => { %>
+        <div class="carousel-item  <%= latestPosts.indexOf(post) === 0 ? 'active' : '' %> " >
             <%
                     coverImageSrc = post.coverImage ? "http://localhost:5000/img/posts/covers/" + post.coverImage : "http://localhost:5000/img/posts/covers/default.jpg";
             %>
@@ -48,15 +44,14 @@
         <% data.forEach(post => { %>
         <li> 
             <a href="/post/<%= post._id %>">
-                <h3> <%= post.title %> </h3>
                 <div class="post-container">
                     <%
                         coverImageSrc = post.coverImage ? "http://localhost:5000/img/posts/covers/" + post.coverImage : "http://localhost:5000/img/posts/covers/default.jpg";
                      %>
-                    <img src="<%= coverImageSrc %>" id="coverImage" class="cover-image">
-                    <p class="content-preview"><%= post.content.match(/[^.!?]+[.!?]+/g).slice(0,15)  %></p>
+                    <img src="<%= coverImageSrc %>" id="coverImage" class="homepage-cover-image col-4">
+                    <h3> <%= post.title %> </h3>
+                    <span class="post-list__date"><%= post.createdAt.toDateString()  %></span>
                 </div>
-                <span class="post-list__date"><%= post.createdAt.toDateString()  %></span>
                 
             </a>
         </li>

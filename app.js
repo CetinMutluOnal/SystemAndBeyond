@@ -5,7 +5,8 @@ import expressLayouts from 'express-ejs-layouts';
 import methodOverride from 'method-override';
 import cookieParser from 'cookie-parser';
 import bodyParser from 'body-parser';
-import multer from 'multer';
+import path from 'path';
+import { fileURLToPath } from 'url';
 import pkg from 'connect-mongo';
 const { create } = pkg;
 import connectDB from './server/config/db.js';
@@ -22,6 +23,9 @@ import webCategoryRoutes from './server/routes/web/category.js';
 
 const app = express();
 const PORT = 5000 || process.env.PORT;
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Connect to DB
 
@@ -42,6 +46,10 @@ app.use(session({
 }))
 
 app.use(express.static('public'));
+app.use('/tinymce', express.static(path.join(__dirname, 'node_modules', 'tinymce')));
+
+app.use(bodyParser.json({ limit: '5mb' }));
+app.use(bodyParser.urlencoded({ extended: true,limit: '5mb'}));
 
 
 //TEMPLATING ENGINE

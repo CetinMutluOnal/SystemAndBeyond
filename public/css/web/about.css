@@ -1,0 +1,25 @@
+.about-container{
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 1rem 0;
+  border: 1px solid white;
+  border-radius: 1rem;
+  background-color: var(--systemandbeyondlight);
+}
+.author-info{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.socials{
+  display: flex;
+  font-size: x-large;
+}
+
+.socials a {
+  font-size: xx-large;
+}

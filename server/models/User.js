@@ -11,13 +11,22 @@ const UserSchema= new Schema({
     },
     password: {
         type: String,
-        required: true
+        required: true,
+        select: false,
     },
     about:{
         type: String,
     },
     avatar: {
         type: String,
+    },
+    socials: {
+        linkedin: {
+            type: String,
+        },
+        github: {
+            type: String,
+        },
     },
     createdAt: {
         type: Date,

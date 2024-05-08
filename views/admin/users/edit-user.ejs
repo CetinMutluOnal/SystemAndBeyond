@@ -31,6 +31,10 @@
   <label for="about"><b>About</b></label>
   <input type="text" placeholder="About" name="about" class="form-control" value="<%= user.about %>">
 
+  <label for="socials"><b>Socials</b></label>
+  <input type="url" placeholder="linkedin" name="linkedin" class="form-control" value="<%= user.socials.linkedin %>">
+  <input type="url" placeholder="github" name="github" class="form-control" value="<%= user.socials.github %>">
+
   <input type="submit" value="Update" class="btn btn-outline-success">
 
 </form>

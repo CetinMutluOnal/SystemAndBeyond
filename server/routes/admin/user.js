@@ -68,6 +68,10 @@ router.put('/edit-user/:id', authMiddleware, userImageUpload.single('avatar'), a
             name: req.body.name,
             email: req.body.email,
             about: req.body?.about,
+            socials: {
+                linkedin: req.body.linkedin,
+                github: req.body.github,
+            },
             avatar: req.file?.filename,
             updatedAt: Date.now()
         });

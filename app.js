@@ -19,6 +19,7 @@ import adminPostRoutes from './server/routes/admin/post.js';
 import adminUsersRoutes from './server/routes/admin/user.js';
 import webAuthorRoutes from './server/routes/web/author.js';
 import webCategoryRoutes from './server/routes/web/category.js';
+import webAboutRoutes from './server/routes/web/about.js';
 
 
 const app = express();
@@ -64,8 +65,9 @@ app.use('/admin', adminAuthRoutes);
 app.use('/admin', adminCategoryRoutes);
 app.use('/admin', adminPostRoutes);
 app.use('/admin', adminUsersRoutes);
-app.use('/',webAuthorRoutes);
-app.use('/category',webCategoryRoutes);
+app.use('/', webAuthorRoutes);
+app.use('/category', webCategoryRoutes);
+app.use('/about', webAboutRoutes)
 
 app.use(function (req,res,next) {
     res.status(404).render('response/notfound',{

@@ -1,0 +1,24 @@
+<article class="post container">
+    <h1><%= post.title %></h1>
+    <div class="cover-container">
+          <%
+            coverImageSrc = post.coverImage ? "http://localhost:5000/img/posts/covers/" + post.coverImage : "http://localhost:5000/img/posts/covers/default.jpg";
+          %>
+            <img src="<%= coverImageSrc %>" class="post-detail-cover-image">
+        </label>
+      </div>
+
+    <p>
+      <%- post.content  %>
+    </p>
+    
+      <div class="author-container">
+        <div class="author">
+          <img src="http://localhost:5000/img/users/<%=author.avatar %>"  id="postAvatarImage" class="avatar-image">
+        </div>
+        <div class="author-info">
+          <h3><%= author.name  %></h3>
+        <p> <%= author.about %></p>
+      </div>
+    </div>
+</article>

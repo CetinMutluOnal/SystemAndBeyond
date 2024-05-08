@@ -1,0 +1,31 @@
+<div class="admin-title">
+    <h2>Categories</h2>
+    <a href="/admin/add-category" class="btn btn-warning"> + Add New</a>
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+        <th scope="col">#</th>
+        <th scope="col">Category Name</th>
+        <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+        <% categories.forEach(category => { %>
+                <tr>
+                        <th scope="row"><%= (categories.indexOf(category)) + 1  %></th>
+                        <td><%= (category.title).toUpperCase() %></td>
+                        <td>
+                            <div style="display: flex; justify-content: space-around;">
+                                <a href="/admin/edit-category/<%= category._id  %>" class="btn btn-primary bi bi-pencil-square row"></a>
+                                <form action="/admin/delete-category/<%= category._id  %>?_method=DELETE" method="POST">
+                                    <button type="submit" value="Delete" class="btn btn-primary bi bi-trash">
+                                    </button>
+                                </form>
+                            </div>
+                        </td>
+                </tr>
+<% }) %>
+    <tbody>
+</table>

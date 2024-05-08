@@ -1,0 +1,32 @@
+<a href="/admin/posts">&larr; Back</a>
+<div class="admin-title">
+  <h2>Add New Post</h2>
+</div>
+
+<form action="/admin/add-post" method="POST" class="form-group"  enctype="multipart/form-data" >
+
+  <div class="cover-container">
+    <input type="file" id="coverInput" name="cover" accept="image/*" style="display: none;" />
+    <label for="coverInput" class="cover">
+        <img src="http://localhost:5000/img/posts/covers/default.jpg" id="coverImage" class="cover-image">
+    </label>
+  </div>
+
+  <label for="title"><b>Title</b></label>
+  <input type="text" placeholder="Post Title" name="title"class="form-control">
+
+  <label for="content"><b>Content</b></label>
+  <textarea name="content" cols="50" rows="10" class="form-control"></textarea>
+
+  <div class="form-group">
+    <label for="exampleFormControlSelect2">Select Category</label>
+    <select class="form-control" id="exampleFormControlSelect2" name="category">
+      <% categories.forEach(category => { %>
+        <option value="<%= category._id %>" ><%= category.title  %></option>
+      <% }) %>
+    </select>
+  </div>  
+
+  <input type="submit" value="Add" class="btn btn-outline-success">
+
+</form>

@@ -1,0 +1,23 @@
+<section class="posts container">
+    <h2 class="post__headers"><%= category.title.toUpperCase() %> POSTS</h2>
+    <ul class="post-ul">
+        <% data.forEach(post => { %>
+        <li> 
+            <a id="post-card" href="/post/<%= post._id %>">
+                <div class="post-container">
+                    <%
+                        coverImageSrc = post.coverImage ? "http://localhost:5000/img/posts/covers/" + post.coverImage : "http://localhost:5000/img/posts/covers/default.jpg";
+                     %>
+                    <img src="<%= coverImageSrc %>" class="cover-image col-4">
+                    <h3> <%= post.title %> </h3>
+                    <span class="post-list-date"><%= post.createdAt.toDateString()  %></span>
+                </div>
+            </a>
+        </li>
+        <% }) %>
+    </ul>
+
+    <% if (nextPage !== null ) { %>
+        <a href="/?page=<%= nextPage %>" class="pagination">&lt; View Older Posts</a>
+    <% } %>
+</section>

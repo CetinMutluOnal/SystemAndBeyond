@@ -1,0 +1,29 @@
+.sidebar-main-container{
+    height: 100vh;
+}
+.sidebar-container{
+    height: 100%;
+}
+.sidebar-nav{
+    display: flex;
+    flex-direction: column;
+    justify-content:space-between;
+    height: 100%;
+    background-color: var(--skycolor);
+    padding: 1.5rem;
+}
+
+.sidebar-nav ul{
+    list-style-type: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    font-weight: 600;
+    padding: 0;
+}
+
+.sidebar-list li a{
+    text-decoration: none;
+    color: var(--systemandbeyond);
+}

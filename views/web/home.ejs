@@ -1,0 +1,64 @@
+<div class="slider-container">
+<div class="welcome">
+    <h1 class="welcome-header"> Welcome To System and Beyond!</h1>
+</div>
+
+<div id="carouselExampleCaptions" class="carousel slide">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="0" class="active" aria-current="true" aria-label="Slide 1"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="1" aria-label="Slide 2"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="2" aria-label="Slide 3"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="3" aria-label="Slide 4"></button>
+      <button type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide-to="4" aria-label="Slide 5"></button>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleCaptions" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    <% latestPosts.forEach(post => { %>
+        <div class="carousel-item  <%= latestPosts.indexOf(post) === 0 ? 'active' : '' %> " >
+            <%
+                    coverImageSrc = post.coverImage ? "http://localhost:5000/img/posts/covers/" + post.coverImage : "http://localhost:5000/img/posts/covers/default.jpg";
+            %>
+            <a href="/post/<%=post._id%>">
+                <img src="<%= coverImageSrc %>" class="d-block slider-image"> 
+                <div class="carousel-caption d-none d-md-block">
+                <h5> <%= post.title %></h5>
+            </div>
+            </a>
+      </div>
+      <% }); %>
+      
+    </div>
+  </div>
+
+</div>
+<section class="posts container">
+    <h2 class="post__headers">Latest Posts</h2>
+
+    <ul class="post-ul">
+        <% data.forEach(post => { %>
+        <li> 
+            <a id="post-card" href="/post/<%= post._id %>">
+                <div class="post-container">
+                    <%
+                        coverImageSrc = post.coverImage ? "http://localhost:5000/img/posts/covers/" + post.coverImage : "http://localhost:5000/img/posts/covers/default.jpg";
+                     %>
+                    <img src="<%= coverImageSrc %>" class="cover-image col-4">
+                    <h3> <%= post.title %> </h3>
+                    <span class="post-list-date"><%= post.createdAt.toDateString()  %></span>
+                </div>
+                
+            </a>
+        </li>
+        <% }) %>
+    </ul>
+
+    <% if (nextPage !== null ) { %>
+        <a href="/?page=<%= nextPage %>" class="pagination">&lt; View Older Posts</a>
+    <% } %>
+</section>

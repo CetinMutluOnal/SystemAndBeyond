@@ -1,0 +1,18 @@
+<a href="/admin/categories">&larr; Back</a>
+<div class="admin-posts">
+  <h2>View / Edit Categories</h2>
+
+  <form action="/admin/delete-category/<%= category._id %>?_method=DELETE" class="form-group" method="POST">
+    <input type="submit" value="Delete" class="btn-delete btn">
+  </form>
+
+</div>
+
+<form action="/admin/edit-category/<%= category._id %>?_method=PUT" class="form-group" method="POST">
+
+  <label for="title"><b>Title</b></label>
+  <input type="text" placeholder="Category Title" name="title" class="form-control" value="<%= category.title %>">
+
+  <input type="submit" value="Update" class="btn btn-outline-success">
+
+</form>

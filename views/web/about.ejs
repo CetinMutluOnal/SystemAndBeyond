@@ -1,0 +1,31 @@
+<div class="container">
+    <a href="/admin/users" >&larr; Back</a>
+
+    <% users.forEach(author => { %>
+
+        <div class="about-container">
+                <div class="avatar-container col-3">
+                    <input type="file" id="fileInput" name="avatar" accept="image/*" style="display: none;" />
+                    <label for="fileInput" class="avatar">
+                        <img src="http://localhost:5000/img/users/<%=author.avatar %>"  id="avatarImage" class="avatar-image">
+                    </label>
+                </div>
+            <div class="author-info col-8">
+                    <h2><%= author.name  %></h2>
+                    <p> <%= author.about %></p>
+                    <div class="socials">
+                        <% if (author.socials.linkedin) { %>
+                            <a href="<%= author.socials.linkedin %>" target="_blank" >
+                                <i class="bi bi-linkedin"></i>
+                            </a>
+                        <% } %>
+                        <% if (author.socials.github) { %>
+                            <a href="<%= author.socials.github %>" target="_blank">
+                                <i class="bi bi-github"></i>
+                            </a>
+                        <% } %>
+                    </div>
+            </div>
+        </div>
+    <% }); %>
+</div>

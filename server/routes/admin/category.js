@@ -66,7 +66,7 @@ router.post('/category', authMiddleware, async (req, res) => {
         if( !newCategory){
             res.status('502').json({message: 'Bad Request'});
         }
-        res.redirect('/categories');
+        res.redirect('/admin/categories');
     } catch (error) {
         console.log(error);
     }
@@ -98,7 +98,7 @@ router.put('/edit-category/:id', authMiddleware, async (req, res) => {
         await Category.findByIdAndUpdate(req.params.id, {
             title: req.body.title,
         });
-        res.redirect('/categories');
+        res.redirect('/admin/categories');
     } catch (error) {
         console.log(error);
     }
@@ -107,7 +107,7 @@ router.put('/edit-category/:id', authMiddleware, async (req, res) => {
 router.delete('/delete-category/:id', authMiddleware, async (req, res) => {
     try {
         await Category.findByIdAndDelete(req.params.id);
-        res.redirect('/categories');
+        res.redirect('/admin/categories');
     } catch (error) {
         console.log(error);
     }

@@ -1,11 +1,11 @@
 <header class="header">
     <div class="logo-holder">
         <a href="/">
-            <img class="header__logo" src="/img/Logo_alpha_horizontal_white.png" alt="">
+            <img class="header-logo" src="/img/Logo_alpha_horizontal_white.png" alt="">
         </a> 
     </div>   
 
-    <nav class="header__nav">
+    <nav class="header-nav">
         <ul>
             <li>
                 <a href="/" class="<%= isActiveRoute('/',currentRoute)  %>">Home</a>
@@ -17,12 +17,15 @@
                 <a href="/category/cloud" class="<%= isActiveRoute('/cloud',currentRoute)  %>">Cloud</a>
             </li>
             <li>
+                <a href="/category/programming" class="<%= isActiveRoute('/programming',currentRoute)  %>">Programming</a>
+            </li>
+            <li>
                 <a href="/about" class="<%= isActiveRoute('/about',currentRoute)  %>">About Us</a>
             </li>
         </ul>
     </nav>
 
-    <div class="header__button">
+    <div class="header-button">
         <button class="btn btn-primary searchBtn" aria-expanded="false">
             Search
             <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-search" viewBox="0 0 16 16">

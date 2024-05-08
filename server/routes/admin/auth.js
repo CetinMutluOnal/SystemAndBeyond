@@ -118,9 +118,13 @@ router.post('/register', async(req,res) => {
 router.post('/login', async(req,res) => {
     try {
         const { email, password } = req.body;
-        const user = await User.findOne({email});
+        const user = await User.findOne({email}).select('+password');
         if (!user){
-            res.status(401).json({message: 'We can not find any user with this e-mail.'})
+            res.status(404).render('response/notfound',{
+                layout: 'layouts/main',
+                currentRoute:'/',
+                message: "Email Doesn't Exist"
+            });
         }
         if (await compare(password,user.password)){
             const token = sign({ userId: user._id}, jwtSecret );

@@ -18,7 +18,17 @@
     object-position: center;
 }
 
-.admin-cover-image {
+.cover-image {
+    width: 450px;
+    height: 250px;
+    object-fit: cover;
+}
+
+.cover:hover {
+    opacity: 0.8;
+}
+
+.post-detail-cover-image {
     width: 100%;
     height: 100%;
     object-fit: cover;

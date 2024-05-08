@@ -16,8 +16,15 @@ body {
     background: radial-gradient(circle, rgba(221,248,252,1) 0%, rgba(255,255,255,1) 100%); */
     background: white;
     margin: 0;
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
 }
 p { color: var(--black)} 
+a { 
+    text-decoration: none;
+    color: var(--black);
+ }
 
 input[type="text"],
 input[type="email"],
@@ -33,7 +40,12 @@ textarea{
     margin-bottom: 1rem;
 }
 
-
+.content{
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
 .main-page-container{
     display: flex;
 }
@@ -65,87 +77,6 @@ textarea{
     border-radius: var(--border-radius);
 }
 
-/* HEADER */
-
-.header{
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
-    background-color: var(--systemandbeyond);
-}
-
-.logo-holder{
-    display: flex;
-    width: 15rem;
-}
-
-@media only screen and (min-width: 768px){
-}
-
-.header__logo{
-    max-width: 100%;
-    max-height: 100%;
-}
-
-.logo{
-    display: inline-block;
-    width: 30%;
-}
-
-.header__logo:hover{
-    text-decoration: underline;
-}
-.header__nav{
-    display: flex;
-    justify-content: center;
-    background-color:var(--systemandbeyond);
-}
-
-.header__button{
-    display: flex;
-    justify-content: end;
-}
-
-.header__button button{
-    display: flex;
-    gap: 0.3rem;
-    align-items: center;
-    border:0;
-    padding: 6px 12px;
-    background: none;
-    border-radius: var(--border-radius);
-    border: 2px solid transparent;
-    font-size: var(--font-size-base);
-    font-weight: 600;
-    color: white;
-}
-
-.header__button button:hover{
-    border: 2px solid var(--black)
-}
-
-.header__nav ul {
-    list-style-type: none;
-    display: flex;
-    gap: 1rem;
-    font-weight: 600;
-    padding: 0;
-}
-
-.header__nav ul a{
-    padding: 10px;
-    text-decoration: none;
-    color: white;
-}
-
-.header__nav ul a:hover{
-    text-decoration: underline;
-}
-
-.header__nav ul a.active{
-    text-decoration: underline;
-}
-
 /* Welcome */
 
 .welcome{
@@ -153,15 +84,19 @@ textarea{
     color: white;
 }
 
-.welcome__header{
+.welcome-header{
     margin-top: 10px;
     margin-bottom: 5px;
     color: var(--systemandbeyond);
 }
 
-.welcome__body{
+.welcome-body{
     font-size: var(--font-size-md);
     margin: 5px 0 40px 0;
+    color: var(--systemandbeyond);
+}
+.welcome-image{
+    margin: auto;
 }
 
 /* Posts */
@@ -183,6 +118,9 @@ textarea{
     align-items: center;
 }
 
+#post-card{
+    width: 90vw;
+}
 .post-ul{
 list-style-type: none;
 padding: 0;
@@ -192,7 +130,7 @@ display: flex;
 flex-direction: column;
 }
 
-.post-list__date{
+.post-list-date{
     font-size: var(--font-size-base);
     color: var(--gray);
     width: 250px;
@@ -276,10 +214,13 @@ flex-direction: column;
 /* Footer */
 
 .footer{
-    margin: 4rem;
+    height: 10vh;
+    margin-top: 4rem;
     text-align: center;
-    bottom: 0;
-    left: 0;
+    background-color: var(--systemandbeyond);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .admin-title {

@@ -1,6 +1,6 @@
 <div class="slider-container">
 <div class="welcome">
-    <h1 class="welcome__header"> Welcome To System and Beyond!</h1>
+    <h1 class="welcome-header"> Welcome To System and Beyond!</h1>
 </div>
 
 <div id="carouselExampleCaptions" class="carousel slide">
@@ -43,14 +43,14 @@
     <ul class="post-ul">
         <% data.forEach(post => { %>
         <li> 
-            <a href="/post/<%= post._id %>">
+            <a id="post-card" href="/post/<%= post._id %>">
                 <div class="post-container">
                     <%
                         coverImageSrc = post.coverImage ? "http://localhost:5000/img/posts/covers/" + post.coverImage : "http://localhost:5000/img/posts/covers/default.jpg";
                      %>
-                    <img src="<%= coverImageSrc %>" id="coverImage" class="homepage-cover-image col-4">
+                    <img src="<%= coverImageSrc %>" class="cover-image col-4">
                     <h3> <%= post.title %> </h3>
-                    <span class="post-list__date"><%= post.createdAt.toDateString()  %></span>
+                    <span class="post-list-date"><%= post.createdAt.toDateString()  %></span>
                 </div>
                 
             </a>

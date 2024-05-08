@@ -18,10 +18,10 @@ router.get('/posts',authMiddleware ,async(req, res) => {
             title: "Posts Controls",
             description: "Created By System And Beyond Squad."
         }
-        const data = await Post.find();
+        const users = await Post.find().populate('author','name').populate('category','title');
         res.render('admin/posts/posts',{
             locals,
-            data,
+            users,
             layout: 'layouts/admin'
         });
     } catch (error) {

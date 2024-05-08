@@ -1,6 +1,10 @@
 <div class="welcome">
-    <h1 class="welcome__header">Page Not Found!</h1>
-    <div class="welcome__body">This Page Doesn't Exist! </div>
+    <h1 class="welcome-header">Page Not Found!</h1>
+    <% if (typeof message !== 'undefined' && message) { %>
+        <div class="welcome-body"> 
+            <p> <%= message %> </p>  
+        </div>
+        <% } %>
 </div>
 
 <img src="/img/linux.jpg" alt="Penguins" class="welcome-image" width="981" height="528">

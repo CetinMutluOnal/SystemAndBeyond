@@ -1,12 +1,11 @@
-<div class="container">
-    <a href="/admin/users" >&larr; Back</a>
+<div class="container about">
+    <a href="/admin/users" >&larr; </a>
 
     <% users.forEach(author => { %>
 
         <div class="about-container">
                 <div class="avatar-container col-3">
-                    <input type="file" id="fileInput" name="avatar" accept="image/*" style="display: none;" />
-                    <label for="fileInput" class="avatar">
+                    <label class="avatar">
                         <img src="http://localhost:5000/img/users/<%=author.avatar %>"  id="avatarImage" class="avatar-image">
                     </label>
                 </div>

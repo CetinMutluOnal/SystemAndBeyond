@@ -1,6 +1,7 @@
 import { Router } from "express";
 const router = Router();
 import User from "../../models/User.js";
+const address = process.env.HOST_ADDRESS;
 
 router.get('/author/:username', async (req, res) => {
     try{
@@ -11,6 +12,7 @@ router.get('/author/:username', async (req, res) => {
         const author = await User.findOne({name: req.params.username});
         res.render('web/author/author-profile', {
             locals,
+            address,
             author,
             layout:('layouts/admin')
         });

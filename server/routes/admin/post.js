@@ -5,6 +5,7 @@ import Category from "../../models/Category.js";
 import { authMiddleware } from "./auth.js";
 import uploadHelpers from "../../helpers/uploadHelpers.js";
 const postCoverImageUpload = uploadHelpers.postCoverImageUpload;
+const address = process.env.IP_ADDRESS
 
 
 /**
@@ -21,6 +22,7 @@ router.get('/posts',authMiddleware ,async(req, res) => {
         const users = await Post.find().populate('author','name').populate('category','title');
         res.render('admin/posts/posts',{
             locals,
+            address,
             users,
             layout: 'layouts/admin'
         });
@@ -45,6 +47,7 @@ router.get('/add-post',authMiddleware, async(req, res) => {
         }
         res.render('admin/posts/add-post',{
             locals,
+            address,
             categories,
             layout: 'layouts/admin'
         });
@@ -90,6 +93,7 @@ router.get('/edit-post/:id',authMiddleware, async(req, res) => {
         const post = await Post.findOne({_id: req.params.id});
         res.render('admin/posts/edit-post',{
             locals,
+            address,
             post,
             categories: await Category.find(),
             layout: 'layouts/admin'

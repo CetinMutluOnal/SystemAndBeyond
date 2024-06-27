@@ -18,7 +18,7 @@
     <input type="file" id="coverInput" name="cover" accept="image/*" style="display: none;" />
     <label for="coverInput" class="cover">
       <%
-        coverImageSrc = post.coverImage ? "http://localhost:5000/img/posts/covers/" + post.coverImage : "http://localhost:5000/img/posts/covers/default.jpg";
+        coverImageSrc = post.coverImage ? `${address}/img/posts/covers/` + post.coverImage : `${address}/img/posts/covers/default.jpg`;
       %>
         <img src="<%= coverImageSrc %>"  class="admin-cover-image">
     </label>

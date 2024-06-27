@@ -1,12 +1,17 @@
+.about{
+  margin: 1rem auto;
+  border: 5px solid var(--systemandbeyondlight);
+  border-radius: 1rem;
+}
 .about-container{
   position: relative;
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
-  margin: 1rem 0;
-  border: 1px solid white;
-  border-radius: 1rem;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.about-container:hover{
   background-color: var(--systemandbeyondlight);
 }
 .author-info{

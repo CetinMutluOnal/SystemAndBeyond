@@ -22,12 +22,12 @@
     <% latestPosts.forEach(post => { %>
         <div class="carousel-item  <%= latestPosts.indexOf(post) === 0 ? 'active' : '' %> " >
             <%
-                    coverImageSrc = post.coverImage ? "http://localhost:5000/img/posts/covers/" + post.coverImage : "http://localhost:5000/img/posts/covers/default.jpg";
+                    coverImageSrc = post.coverImage ? `${address}/img/posts/covers/` + post.coverImage : `${address}img/posts/covers/default.jpg`;
             %>
             <a href="/post/<%=post._id%>">
                 <img src="<%= coverImageSrc %>" class="d-block slider-image"> 
                 <div class="carousel-caption d-none d-md-block">
-                <h5> <%= post.title %></h5>
+                <span class="post-title"> <%= post.title %></span>
             </div>
             </a>
       </div>
@@ -46,7 +46,7 @@
             <a id="post-card" href="/post/<%= post._id %>">
                 <div class="post-container">
                     <%
-                        coverImageSrc = post.coverImage ? "http://localhost:5000/img/posts/covers/" + post.coverImage : "http://localhost:5000/img/posts/covers/default.jpg";
+                        coverImageSrc = post.coverImage ? `${address}/img/posts/covers/` + post.coverImage : `${address}/img/posts/covers/default.jpg`;
                      %>
                     <img src="<%= coverImageSrc %>" class="cover-image col-4">
                     <h3> <%= post.title %> </h3>

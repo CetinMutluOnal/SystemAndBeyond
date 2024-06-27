@@ -6,6 +6,7 @@ import { hash, compare } from 'bcrypt';
 import pkg from 'jsonwebtoken';
 const { verify, sign } = pkg;
 const jwtSecret = process.env.JWT_SECRET;
+const address = process.env.IP_ADDRESS
 /**
  *
  * Check Login

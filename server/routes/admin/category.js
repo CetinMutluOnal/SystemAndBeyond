@@ -3,6 +3,7 @@ const router = Router();
 import Post from '../../models/Post.js';
 import Category from '../../models/Category.js';
 import { authMiddleware } from './auth.js';
+const address = process.env.IP_ADDRESS
 
 router.get('/categories', authMiddleware, async (req,res) => {
     try {
@@ -17,6 +18,7 @@ router.get('/categories', authMiddleware, async (req,res) => {
         res.render('admin/categories/category',{
             categories,
             locals,
+            address,
             layout: 'layouts/admin'
         });
     } catch (error) {
@@ -84,6 +86,7 @@ router.get('/edit-category/:id', authMiddleware, async (req,res) => {
         }
         res.render('admin/categories/edit-category',{
             category,
+            address,
             locals,
             layout: 'layouts/admin',
         })

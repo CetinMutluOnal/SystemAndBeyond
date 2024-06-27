@@ -2,6 +2,7 @@ import { Router } from "express";
 const router = Router();
 import Post from "../../models/Post.js";
 import Category from "../../models/Category.js";
+const address = process.env.HOST_ADDRESS;
 
 /**
  * GET LINUX POSTS
@@ -35,6 +36,7 @@ router.get('/:title', async (req,res) => {
 
             res.render('web/category', {
                 locals,
+                address,
                 data,
                 category,
                 current: page,

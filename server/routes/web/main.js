@@ -2,6 +2,7 @@ import { Router } from 'express';
 const router = Router();
 import Post from '../../models/Post.js';
 import User from '../../models/User.js';
+const address = process.env.HOST_ADDRESS;
 
 
 /**
@@ -36,6 +37,7 @@ router.get('', async (req, res) => {
             locals,
             data,
             latestPosts,
+            address,
             current: page,
             nextPage: hasNextPage ? nextPage : null,
             currentRoute: '/',
@@ -62,6 +64,7 @@ router.get('/post/:id', async (req,res) => {
         const author = await User.findById(post.author)
         res.render('web/Post/post', {
             locals,
+            address,
             post,
             author,
             currentRoute: `/post/${slug}`

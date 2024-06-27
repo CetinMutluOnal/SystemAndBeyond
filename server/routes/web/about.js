@@ -1,6 +1,7 @@
 import { Router } from "express";
 const router = Router();
 import User from '../../models/User.js';
+const address = process.env.HOST_ADDRESS;
 
 router.get('/', async(req,res) => {
     try {
@@ -17,6 +18,7 @@ router.get('/', async(req,res) => {
         }
         res.render('web/about', {
             locals,
+            address,
             users,
             layout:('layouts/main'),
             currentRoute:'/about'

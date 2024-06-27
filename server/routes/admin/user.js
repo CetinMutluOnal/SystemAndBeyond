@@ -1,11 +1,10 @@
 import { Router } from "express";
 const router = Router();
 import User from "../../models/User.js";
-import Post from "../../models/Post.js";
-import Category from "../../models/Category.js";
 import { authMiddleware } from "./auth.js";
 import uploadHelpers from "../../helpers/uploadHelpers.js";
 const userImageUpload = uploadHelpers.userImageUpload;
+const address = process.env.IP_ADDRESS
 
 
 /**
@@ -39,6 +38,7 @@ router.get('/edit-user/:id', authMiddleware, async (req, res) => {
         const user = await User.findOne({_id: req.params.id});
         res.render('admin/users/edit-user', {
             locals,
+            address,
             user,
             layout:('layouts/admin')
         });
